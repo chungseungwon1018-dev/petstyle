@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetStyle Match | 내 반려견을 위한 완벽한 스타일링</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Remixicons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <i class="ri-scissors-cut-fill"></i>
+            <span>PetStyle Match</span>
+        </div>
+        <div class="nav-links">
+            <a href="#">스타일 둘러보기</a>
+            <a href="#">디자이너 찾기</a>
+            <a href="#">매거진</a>
+        </div>
+        <div class="nav-actions">
+            <button class="btn-outline">로그인</button>
+            <button class="btn-primary">예약 내역</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-bg">
+            <div class="glow-circle gc-1"></div>
+            <div class="glow-circle gc-2"></div>
+            <div class="glow-circle gc-3"></div>
+        </div>
+        <div class="hero-content">
+            <div class="badge-hero">🐾 우리 아이 맞춤 스타일 큐레이션</div>
+            <h1>완벽한 스타일링, <br><span class="highlight">최고의 전문 디자이너</span>와 함께</h1>
+            <p>우리 아이의 견종과 원하는 스타일만 선택하세요. 검증된 포트폴리오를 보유한 인근 전문 미용샵을 AI가 매칭해 드립니다.</p>
+            
+            <div class="search-box glass slide-up">
+                <div class="search-field">
+                    <label><i class="ri-baidu-line"></i> 견종</label>
+                    <select id="breed-select">
+                        <option value="">모든 견종</option>
+                        <option value="poodle">푸들</option>
+                        <option value="bichon">비숑프리제</option>
+                        <option value="pomeranian">포메라니안</option>
+                        <option value="maltese">말티즈</option>
+                    </select>
+                </div>
+                <div class="search-divider"></div>
+                <div class="search-field">
+                    <label><i class="ri-scissors-line"></i> 미용 스타일</label>
+                    <select id="style-select">
+                        <option value="">스타일 선택</option>
+                        <option value="teddy">테디베어 컷/가위컷</option>
+                        <option value="sporing">스포팅</option>
+                        <option value="helmet">귀툭튀/하이바</option>
+                        <option value="boo">곰돌이/물개 컷</option>
+                        <option value="basic">기본 미용</option>
+                    </select>
+                </div>
+                <div class="search-divider"></div>
+                <div class="search-field">
+                    <label><i class="ri-map-pin-line"></i> 지역</label>
+                    <select id="location-select">
+                        <option value="gangnam">강남구/서초구</option>
+                        <option value="hongdae">마포구/용산구</option>
+                        <option value="bundang">분당구/판교</option>
+                    </select>
+                </div>
+                <button id="search-btn" class="btn-search"><i class="ri-search-line"></i> 맞춤 매칭 검색</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Results Section -->
+    <section class="results-section" id="results">
+        <div class="section-header">
+            <h2>추천 맞춤 디자이너 <span class="badge" id="result-count">0</span></h2>
+            <p>선택하신 조건에 맞춰 검증된 포트폴리오를 보유한 상위 1% 미용실을 추천합니다.</p>
+        </div>
+        
+        <div class="results-grid" id="designer-list">
+            <!-- Cards will be populated dynamically -->
+        </div>
+        
+        <div id="no-results" class="no-results hidden">
+            <div class="empty-icon"><i class="ri-emotion-sad-line"></i></div>
+            <h3>조건에 맞는 디자이너가 없습니다.</h3>
+            <p>다른 검색 조건으로 다시 시도해보세요.</p>
+        </div>
+    </section>
+
+    <!-- Booking Modal -->
+    <div class="modal-overlay" id="booking-modal">
+        <div class="modal-content glass-dark slide-up-fast">
+            <button class="modal-close" id="close-modal"><i class="ri-close-line"></i></button>
+            <div class="modal-header">
+                <img src="" id="modal-designer-img" alt="디자이너 사진">
+                <div>
+                    <h3 id="modal-designer-name">디자이너 이름</h3>
+                    <p class="modal-shop" id="modal-shop-name">매장명</p>
+                </div>
+            </div>
+            
+            <form class="booking-form" id="booking-form">
+                <div class="form-group">
+                    <label>예약 날짜</label>
+                    <input type="date" required id="booking-date">
+                </div>
+                <div class="form-group">
+                    <label>예약 시간</label>
+                    <div class="time-slots">
+                        <label class="time-slot"><input type="radio" name="time" value="10:00" required><span>10:00</span></label>
+                        <label class="time-slot"><input type="radio" name="time" value="13:00"><span>13:00</span></label>
+                        <label class="time-slot"><input type="radio" name="time" value="15:30"><span>15:30</span></label>
+                        <label class="time-slot"><input type="radio" name="time" value="18:00"><span>18:00</span></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>추가 요청사항 (선택)</label>
+                    <textarea rows="3" placeholder="예: 아이가 미용 트라우마가 있어 조심스럽게 다뤄주세요."></textarea>
+                </div>
+                <div class="price-estimate">
+                    <span>예상 결제 금액</span>
+                    <strong id="modal-price">0원</strong>
+                </div>
+                <button type="submit" class="btn-book-submit">예약 확정하기</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"><i class="ri-checkbox-circle-fill"></i> 예약이 성공적으로 완료되었습니다!</div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="ri-scissors-cut-fill"></i>
+                <span>PetStyle Match</span>
+            </div>
+            <p>보호자와 반려견이 모두 만족하는 프리미엄 미용 경험</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
